@@ -5,24 +5,23 @@ var sonnets = 'THE SONNETS by William Shakespeare 1 From fairest creatures we de
 
 
 function wordCount (text) {
-    var separatedText = text.split(' ');
+    var lowerCaseText = text.toLowerCase();
+
+    var separatedText = lowerCaseText.split(' ');
 
     var onlyWords = separatedText.filter(function(fullWords) {
         return fullWords.length >= 2;
     });
 
-    // onlyWords.forEach(function(word, i) {
-    //     var eachWord = (onlyWord[i]) === (onlyWords[])
-    // });
+    var wordCount = {};
 
+    onlyWords.forEach(function(word) {
 
-    // var wordList = onlyWords.map(function(word) {
-    //     onlyWords.forEach(function(word) {
-    //         var word = (onlyWords[i])
-    //     })
-    // });
+        wordCount[word] = wordCount[word] ? wordCount[word]+1 : 1;
 
-    return onlyWords;
+    });
+
+    return wordCount;
 }
 
 var wordLog = wordCount(sonnets);
