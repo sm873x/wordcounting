@@ -5,9 +5,10 @@ var sonnets = 'THE SONNETS by William Shakespeare 1 From fairest creatures we de
 
 
 function wordCount (text) {
-    var lowerCaseText = text.toLowerCase();
+    var noPunctuation = text.replace(/\.|\'|\:|\,/g, '');
+    // console.log(noPunctuation);
 
-    var separatedText = lowerCaseText.split(' ');
+    var separatedText = noPunctuation.toLowerCase().split(' ');
 
     var onlyWords = separatedText.filter(function(fullWords) {
         return fullWords.length >= 2;
@@ -26,7 +27,5 @@ function wordCount (text) {
 
 var wordLog = wordCount(sonnets);
 console.log(wordLog);
-
-
 
 })();
