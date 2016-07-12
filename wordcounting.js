@@ -1,26 +1,25 @@
 
-(function() {
+(function(ns) {
     'use strict';
 
-function wordCount (text) {
-    var noPunctuation = text.replace(/\'s|'\.|\'|\:|\,|\*|\!|\@|\%|\^|\(|\)|\+|\=|\~|\`|\?|\>|\/|\_/g, '');
+    window.wordFreq = ns = ( ns || {});
 
-    var separatedText = noPunctuation.toLowerCase().split(' ');
+    ns.count = function count (text) {
+        var wordCount = {};
 
-    var onlyWords = separatedText.filter(function(fullWords) {
-        return fullWords.length >= 2;
-    });
+        text
+            .toLowerCase()
+            .replace(/\'s/g, ' ')
+            .replace(/[^a-z\-\s]/g , ' ')
+            .split(' ')
+            .filter(function excludeSingles(word) {
+                return word.length > 1;
+            })
+            .forEach(function doCount(word) {
+                wordCount[word] = (wordCount[word]) ? wordCount[word]+1 : 1;
+            });
 
-    var wordCount = {};
+        return wordCount;
+    }
 
-    onlyWords.forEach(function(word) {
-        wordCount[word] = wordCount[word] ? wordCount[word]+1 : 1;
-    });
-
-    return wordCount;
-}
-
-var wordLog = wordCount(text);
-console.log(wordLog);
-
-})();
+})(window.wordFreq);
